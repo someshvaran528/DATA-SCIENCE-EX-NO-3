@@ -120,14 +120,132 @@ CC
 #OUTPUT
 <img width="737" height="452" alt="image" src="https://github.com/user-attachments/assets/871cdd68-00c5-4a66-ad7f-ecb7008f682e" />
 
+# CODING
+import pandas as pd
+from scipy import stats
+import numpy as np
+df=pd.read_csv("Data_to_Transform.csv")
+df
 
 
+# OUTPUT
+<img width="759" height="546" alt="image" src="https://github.com/user-attachments/assets/0cd8d109-7f51-42e7-b2cb-f5956d85eb44" />
 
+# CODING
+df.skew()
 
+# OUTPUT
+<img width="385" height="244" alt="image" src="https://github.com/user-attachments/assets/a96f2213-689c-48a5-9af3-7bc79aabd6ed" />
 
+# CODING
+np.log(df["Highly Positive Skew"])
 
+# OUTPUT
+<img width="349" height="562" alt="image" src="https://github.com/user-attachments/assets/af800784-e132-4538-9f72-e98cfed158c3" />
+
+# CODING
+np.reciprocal(df["Moderate Positive Skew"])
+
+# OUTPUT
+<img width="396" height="559" alt="image" src="https://github.com/user-attachments/assets/91f7fd79-66ce-485b-b940-12c59c4d1ccb" />
+
+# CODING
+np.sqrt(df["Highly Positive Skew"])
+
+# OUTPUT
+<img width="325" height="548" alt="image" src="https://github.com/user-attachments/assets/f44746cd-1a2a-4dcc-8b31-f1b33d7c8c7e" />
+
+# CODING
+np.square(df["Highly Positive Skew"])
+
+# OUTPUT
+<img width="324" height="556" alt="image" src="https://github.com/user-attachments/assets/55cbae26-9795-4577-9663-91352a180551" />
+
+# CODING
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+
+# OUTPUT
+<img width="732" height="563" alt="image" src="https://github.com/user-attachments/assets/a2a88873-a77d-4edc-91cf-499a67c03cc8" />
+
+# CODING
+df.skew()
+
+# OUTPUT
+<img width="419" height="275" alt="image" src="https://github.com/user-attachments/assets/5254e124-dc29-49c2-aee3-8c076572e6a4" />
+
+# CODING
+df["Highly Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Highly Negative Skew"])
+df.skew()
+
+# OUTPUT
+<img width="476" height="341" alt="image" src="https://github.com/user-attachments/assets/0c904d57-20b4-4688-a263-61d358c2fb0b" />
+
+# CODING
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal')
+df["Moderate Negative Skew_1"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+df
+
+# OUTPUT
+<img width="1695" height="537" alt="image" src="https://github.com/user-attachments/assets/ddd69145-31bc-49df-95f1-ccea9c1baa84" />
+
+# CODING
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+
+# OUTPUT
+<img width="745" height="561" alt="image" src="https://github.com/user-attachments/assets/f2c74380-7e78-4ea4-b5ca-f5434b9a7c24" />
+
+# CODING
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45')
+plt.show()
+
+# OUTPUT
+<img width="731" height="560" alt="image" src="https://github.com/user-attachments/assets/e23e90b5-f99d-4cb6-b394-e38f43ee0108" />
+
+# CODING
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+df["Moderate Negative Skew"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+
+# OUTPUT
+<img width="707" height="540" alt="image" src="https://github.com/user-attachments/assets/6386f988-a1d1-4580-b67a-4f4cdd05ff91" />
+
+# CODING
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df["Highly Negative Skew"],line='45')
+plt.show()
+
+# OUTPUT
+<img width="706" height="547" alt="image" src="https://github.com/user-attachments/assets/46b09144-4789-4c95-a008-cc1104ac936f" />
+
+# CODING
+dt=pd.read_csv("titanic_dataset.csv")
+dt
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+dt["Age_1"]=qt.fit_transform(dt[["Age"]])
+sm.qqplot(dt['Age'],line='45')
+plt.show()
+
+# OUTPUT
+<img width="700" height="549" alt="image" src="https://github.com/user-attachments/assets/216e1e17-97d8-45be-ac4b-c7b2d4481ae4" />
+
+# CODING
+sm.qqplot(df["Highly Negative Skew_1"],line='45')
+plt.show()
+
+# OUTPUT
+<img width="724" height="554" alt="image" src="https://github.com/user-attachments/assets/34ff351b-6c82-4b31-a654-e385aa9609a1" />
 
 # RESULT:
        # INCLUDE YOUR RESULT HERE
+Thus the given data, Feature Encoding, Transformation process and save the data to a file was performed successfully.
 
        
